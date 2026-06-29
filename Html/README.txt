@@ -9,7 +9,7 @@ Faça o download do projeto Html dentro da pasta do projeto.
 Abrir o arquivo index.html no seu browser.
 
 Observação Importante:
-É vital para o funcionamento do html que a Api esteja rodando.
+É vital para o funcionamento do html que a API esteja rodando.
 
 
 Para acessar a documentação completa acesse
