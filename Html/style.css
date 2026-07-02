@@ -1,0 +1,274 @@
+
+body {
+    background-color: #f4f6f9; /* Um cinza bem claro para dar contraste com o card branco */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333333;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(52, 152, 219, 0.08), transparent 30%),
+        radial-gradient(circle at top right, rgba(41, 128, 185, 0.08), transparent 26%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.topbar-rh {
+    background: linear-gradient(90deg, #ffffff 0%, #f8fbff 100%);
+    border-bottom: 1px solid rgba(44, 62, 80, 0.12);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.topbar-rh .navbar-brand {
+    color: #2c3e50;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.topbar-rh .navbar-brand:hover {
+    color: #2980b9;
+}
+
+.menu-dropdown .dropdown-toggle {
+    background-color: #3498db;
+    border: none;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.7rem 1.1rem;
+}
+
+.menu-dropdown .dropdown-toggle:hover,
+.menu-dropdown .dropdown-toggle:focus {
+    background-color: #2980b9;
+    color: #ffffff;
+}
+
+.menu-dropdown .dropdown-menu {
+    border: 1px solid rgba(44, 62, 80, 0.12);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+    min-width: 14rem;
+}
+
+.menu-dropdown .dropdown-item {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+}
+
+.menu-dropdown .dropdown-item:hover,
+.menu-dropdown .dropdown-item:focus {
+    background-color: #eef6fc;
+    color: #1f4f7a;
+}
+
+.page-title {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.hero-crud {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid rgba(44, 62, 80, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.hero-badge {
+    display: inline-flex;
+    flex-direction: column;   /* Coloca os itens um abaixo do outro */
+    align-items: flex-start;  /* Alinha à esquerda */
+    gap: 0.2rem;
+    background: #eaf4fd;
+    color: #1f5f93;
+    padding: 0.6rem 1rem;
+    border-radius: 19px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.section-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(44, 62, 80, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
+}
+
+.section-card .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+}
+
+.section-title {
+    color: #1f3f5b;
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.section-subtitle {
+    color: #607389;
+    margin: 0.35rem 0 0;
+    font-size: 0.95rem;
+}
+
+.section-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    background: #edf5fb;
+    color: #2a5d85;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.table-soft thead th {
+    background: #f2f7fc;
+    color: #35536d;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+}
+
+.table-soft tbody tr:hover {
+    background: #f9fcff;
+}
+
+.soft-panel {
+    background: #f8fbff;
+    border: 1px dashed rgba(44, 62, 80, 0.14);
+    border-radius: 16px;
+}
+
+.danger-panel {
+    background: linear-gradient(180deg, #fff7f7 0%, #fffdfd 100%);
+    border: 1px solid rgba(231, 76, 60, 0.18);
+    border-radius: 16px;
+}
+
+.mini-help {
+    color: #5e6d7e;
+    font-size: 0.92rem;
+}
+
+/* Estilização do cabeçalho */
+.header-cadastro h2 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Caixa do formulário */
+form {
+    border-top: 5px solid #3498db; /* Uma barrinha azul charmosa no topo do formulário */
+    border-radius: 8px;
+}
+
+/* Títulos de cada seção do formulário */
+.titulo-secao {
+    color: #2980b9;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* Linha divisória das seções */
+hr {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    opacity: 0.2;
+}
+
+/* Pequeno ajuste nos labels para ficarem mais profissionais */
+.form-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #4f5d75;
+}
+
+/* Customização dos inputs para quando o usuário clica neles */
+.form-control:focus, .form-select:focus {
+    border-color: #a0c4ff;
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+/* Botões personalizados */
+.btn-primary-custom {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-primary-custom:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+.btn-light-custom {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.hero-description {
+    text-align: justify;
+}
+
+.toast-container {
+    z-index: 1080;
+}
+
+.js-form-api-error {
+    border-left: 4px solid #dc3545;
+}
+
+.js-form-api-error ul {
+    margin-bottom: 0;
+}
+
+.js-api-field-error {
+    margin-top: 0.35rem;
+}
+
+.swagger-toolbar {
+    justify-content: space-between;
+}
+
+.swagger-frame-wrap {
+    border: 1px solid rgba(44, 62, 80, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+.swagger-frame {
+    display: block;
+    width: 100%;
+    height: min(78vh, 880px);
+    border: 0;
+    background: #ffffff;
+}
+
+.modal-content {
+    border-radius: 18px;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+.hero-title {
+    display: block;
+    font-size: 1.2rem;   /* Ajuste o tamanho conforme desejar */
+    font-weight: 600;    /* Opcional: deixa um pouco mais destacado */
+    margin-bottom: 4px;  /* Espaço entre as linhas */
+}

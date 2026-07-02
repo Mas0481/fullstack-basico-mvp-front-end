@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Funcionários - RH Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light topbar-rh sticky-top">
+    <!-- Barra superior simples: mostra o nome do curso/projeto e serve como ponto de referência da tela -->
+        <div class="container">
+            <a class="navbar-brand d-block w-100 text-center" href="#home" data-target="#home">Pós Graduação em Engenharia de Software - PUC Rio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuSuperior" aria-controls="menuSuperior" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3" aria-live="polite" aria-atomic="true"></div>
+    <!-- Mensagens rápidas do sistema, como sucesso e erro, aparecem aqui sem poluir a página -->
+
+    <main class="container my-4 my-lg-5">
+    <!-- Área principal da tela: primeiro vem a apresentação do MVP e, depois, as demais funções do sistema -->
+        <section id="home" class="hero-crud p-4 p-lg-5 mb-4 mb-lg-5">
+        <!-- Primeiro quadro da página: descreve o projeto e oferece o menu geral para navegar pelas funções -->
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7">
+                    <span class="hero-badge mb-3">
+                    <span class="hero-title d-block">MVP - Desenvolvimento Full Stack</span>
+                    <span class="d-block">Aluno: Marcio Almeida da Silva</span>
+                </span>
+                    <p class="text-muted mb-0 hero-description">
+                        Sistema de cadastro de colaboradores desenvolvido como MVP da trilha de Desenvolvimento Full Stack. O projeto implementa um CRUD completo (Create, Read, Update e Delete) para gerenciamento de colaboradores, utilizando uma API REST construída com Flask e uma interface web responsiva para interação com o usuário. Além das funcionalidades de cadastro, consulta, edição e exclusão de registros, a aplicação possui documentação da API gerada com Swagger/OpenAPI, proporcionando uma descrição detalhada dos endpoints, parâmetros, respostas e exemplos de requisições, facilitando o desenvolvimento, testes e futuras integrações.
+                    </p>
+                </div>
+                <div class="col-lg-5">
+                    <div class="soft-panel p-4 h-100">
+                        <h5 class="section-title mb-3">Menu Geral do Sistema</h5>
+                        <div class="d-flex flex-column gap-2">
+                            <span class="section-chip" data-target="#cadastro">1. Cadastro</span>
+                            <span class="section-chip" data-target="#consulta">2. Consulta</span>
+                            <span class="section-chip" data-target="#edicao">3. Edição</span>
+                            <span class="section-chip" data-target="#exclusao">4. Exclusão</span>
+                            <span class="section-chip" data-target="#swagger">5. Documentação</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blocos que o usuário abre pelo menu: cadastro, consulta, edição, exclusão e Swagger -->
+        <div class="tab-content">
+            <section id="cadastro" class="section-card mb-4 managed-section d-none">
+                <div class="card-header p-4">
+                    <span class="section-chip mb-2">Cadastro</span>
+                    <h2 class="section-title">Novo funcionário</h2>
+                    <p class="section-subtitle">Preencha os dados principais para registrar um colaborador no sistema.</p>
+                </div>
+                <div class="card-body p-4 p-lg-5">
+                    <div id="cadastro-form-container"></div>
+                </div>
+            </section>
+
+            <section id="consulta" class="section-card mb-4 managed-section d-none">
+                <div class="card-header p-4">
+                    <h2 class="section-title">Consulta</h2>
+                    <p class="section-subtitle">Lista de funcionários cadastrados.</p>
+                </div>
+                <div class="card-body p-4">
+                    <div id="consulta-list-container">
+                        <ul id="lista-funcionarios" class="list-group"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="edicao" class="section-card mb-4 managed-section d-none">
+                <div class="card-header p-4">
+                    <h2 class="section-title">Edição</h2>
+                    <p class="section-subtitle">Selecione um funcionário para editar os dados.</p>
+                </div>
+                <div class="card-body p-4 p-lg-5">
+                    <div class="mb-4">
+                        <h5 class="titulo-secao">Funcionários cadastrados</h5>
+                        <hr>
+                        <div id="edicao-list-container"></div>
+                    </div>
+                    <div id="edicao-form-container" class="d-none"></div>
+                </div>
+            </section>
+
+            <section id="exclusao" class="section-card mb-4 managed-section d-none">
+                <div class="card-header p-4">
+                    <h2 class="section-title">Exclusão</h2>
+                    <p class="section-subtitle">Remova um registro da base de dados.</p>
+                </div>
+                <div class="card-body p-4 p-lg-5">
+                    <div id="exclusao-list-container"></div>
+                </div>
+            </section>
+
+            <section id="swagger" class="section-card mb-4 managed-section d-none">
+                <div class="card-header p-4 p-lg-5 pb-3 pb-lg-3">
+                    <span class="section-chip mb-2">Swagger</span>
+                    <h2 class="section-title">Documentação da API</h2>
+                    <p class="section-subtitle mb-0">Acesse a interface Swagger da API diretamente nesta tela ou abra em uma nova aba.</p>
+                </div>
+                <div class="card-body p-4 p-lg-5 pt-0">
+                    <div class="swagger-toolbar mb-3 d-flex flex-wrap gap-2 align-items-center">
+                        <a class="btn btn-primary-custom" href="http://127.0.0.1:5000/docs" target="_blank" rel="noopener noreferrer">Abrir Swagger em nova aba</a>
+                        <span class="mini-help">Se o painel não carregar, use o botão acima para abrir diretamente o endpoint /docs.</span>
+                    </div>
+                    <div class="swagger-frame-wrap">
+                        <iframe
+                            class="swagger-frame"
+                            src="http://127.0.0.1:5000/docs"
+                            title="Swagger da API"
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal de apoio quando o CPF já existe; dá ao usuário uma saída rápida para continuar o teste -->
+    <div class="modal fade" id="cpf-continuation-modal" tabindex="-1" aria-labelledby="cpf-continuation-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cpf-continuation-modal-label">CPF já utilizado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2 js-cpf-continuation-message">O CPF informado já está em uso ou não pôde ser validado neste ambiente.</p>
+                    <p class="mb-0 text-muted">Como este é um cenário de teste, você pode continuar com um CPF temporário gerado automaticamente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-custom" id="cpf-continue-cancel" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary-custom" id="cpf-continue-confirm">Continuar com CPF de teste</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap precisa vir antes do script da página, porque o frontend usa seus componentes e modais -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script principal: controla os formulários, chamadas para a API e a navegação entre as seções -->
+    <script src="scripts.js"></script>
+</body>
+</html>
