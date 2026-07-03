@@ -29,7 +29,7 @@ Baixe o códifo, você pode obter o código-fonte de duas maneiras.
     Clone o repositório.
 
     ```bash
-    git clone hhttps://github.com/Mas0481/fullstack-basico-mvp-front-end
+    git clone https://github.com/Mas0481/fullstack-basico-mvp-front-end
 
     ```
 
