@@ -1,0 +1,59 @@
+name: mvp-sprint
+
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: windroute
+      MYSQL_USER: windroute
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Configure MYSQL_PASSWORD no .env da raiz}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Configure MYSQL_ROOT_PASSWORD no .env da raiz}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_PASSWORD\" mysql -h 127.0.0.1 -u windroute windroute -e 'SELECT 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ${BACKEND_CONTEXT:-../backend}
+      target: production
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8001}:8000"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: windroute
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD:?Configure MYSQL_PASSWORD no .env da raiz}
+      DATABASE_NAME: windroute
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:8080}
+      NOMINATIM_URL: ${NOMINATIM_URL:-https://nominatim.openstreetmap.org}
+      OSRM_URL: ${OSRM_URL:-https://router.project-osrm.org}
+      EXTERNAL_API_USER_AGENT: ${EXTERNAL_API_USER_AGENT:-WindRouteMVP/1.0}
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      target: production
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
